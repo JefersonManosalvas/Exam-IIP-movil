@@ -2,8 +2,13 @@ package com.jpml.ficha_personal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Calendar;
 
 public class ficha_generada extends AppCompatActivity {
@@ -33,36 +38,37 @@ public class ficha_generada extends AppCompatActivity {
 
         Cedula.setText(cedula);
         Nombre.setText(nombre+" "+apellido);
-        //edad.setText(calcul_edad(fecha));
+        edad.setText(fecha);
         Direccion.setText(direccion);
         Telefono.setText(telefono);
         Correo.setText(correo);
 
     }
 
+    public void RegUsu(View V) {
+        BDHelper admin = new BDHelper(this, "registrar.db", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+        String cedula = Cedula.getText().toString();
+        String nombre = Nombre.getText().toString();
+        String Edad = edad.getText().toString();
+        String direccion = Direccion.getText().toString();
+        String telefono = Telefono.getText().toString();
+        String correo = Correo.getText().toString();
+
+        ContentValues datosReg = new ContentValues();
+        datosReg.put("cedula", cedula);
+        datosReg.put("nombre", nombre);
+        datosReg.put("placa", Edad);
+        datosReg.put("aniof", direccion);
+        datosReg.put("marca", telefono);
+        datosReg.put("color", correo);
+
+        bd.insert("tbRegUsu", null, datosReg);
+        Toast.makeText(ficha_generada.this, "LA FICHA SE REGISTRO CORRECTAMENTE", Toast.LENGTH_SHORT).show();
+
+    }
 
 
-//    public String calcul_edad(String fechaNacimiento) {
-//
-//        String[] partesFecha = fechaNacimiento.split("-");
-//        int añoNacimiento = Integer.parseInt(partesFecha[0]);
-//        int mesNacimiento = Integer.parseInt(partesFecha[1]) - 1; // Restar 1 porque los meses en Calendar empiezan en 0
-//        int diaNacimiento = Integer.parseInt(partesFecha[2]);
-//
-//
-//        Calendar fechaActual = Calendar.getInstance();
-//        int añoActual = fechaActual.get(Calendar.YEAR);
-//        int mesActual = fechaActual.get(Calendar.MONTH); // Los meses también empiezan en 0
-//        int diaActual = fechaActual.get(Calendar.DAY_OF_MONTH);
-//
-//        int edad = añoActual - añoNacimiento;
-//
-//
-//        if (mesActual < mesNacimiento || (mesActual == mesNacimiento && diaActual < diaNacimiento)) {
-//            edad--;
-//        }
 
-//
-//        return String.valueOf(edad);
-//    }
+
 }
