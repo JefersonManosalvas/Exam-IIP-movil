@@ -58,10 +58,10 @@ public class ficha_generada extends AppCompatActivity {
         ContentValues datosReg = new ContentValues();
         datosReg.put("cedula", cedula);
         datosReg.put("nombre", nombre);
-        datosReg.put("placa", Edad);
-        datosReg.put("aniof", direccion);
-        datosReg.put("marca", telefono);
-        datosReg.put("color", correo);
+        datosReg.put("fecha", Edad);
+        datosReg.put("direccion", direccion);
+        datosReg.put("telefono", telefono);
+        datosReg.put("correo", correo);
 
         bd.insert("tbRegUsu", null, datosReg);
         Toast.makeText(ficha_generada.this, "LA FICHA SE REGISTRO CORRECTAMENTE", Toast.LENGTH_SHORT).show();
