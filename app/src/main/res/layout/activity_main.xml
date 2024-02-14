@@ -229,6 +229,7 @@
         android:layout_width="64dp"
         android:layout_height="52dp"
         android:hint="calendario"
+        android:onClick="AbrirCalendario"
         app:backgroundTint="#FFFFFF"
         app:icon="@drawable/baseline_calendar_month_24"
         app:iconTint="#121111"
